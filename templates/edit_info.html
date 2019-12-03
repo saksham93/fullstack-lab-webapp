@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Info</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Web Page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/dacf88b734.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dosis|Tomorrow&display=swap" rel="stylesheet">
+	<style>
+		body,html{
+			height: 100%;
+			width: 100%;
+			padding: 0;
+			margin:0; 
+		}
+		.purple{
+			background: linear-gradient(to right, rgb(0, 92, 151), rgb(54, 55, 149));
+			width: 100%;
+   			height: 702px;
+   			position: relative;
+		}
+		.my-profle{
+			position: absolute;
+		    z-index: 20;
+		    border-radius: 34%;
+		    width: 22%;
+		    margin-left: 36%;
+		    margin-top: 32%;
+		}
+		.name{
+			color: #fff;
+			font-size: 28px;
+		    position: absolute;
+		    top: 15%;
+		    left: 55%;
+			font-family: 'Tomorrow', sans-serif; 
+			font-weight: bold;
+		}
+		#personal_details{
+			position: absolute;
+			top: 42%;
+			left: 55%;
+			color:#000;
+			font-family: 'Dosis', sans-serif;
+			font-weight: bold;
+			z-index: 10;
+			width: 45%;
+		    height: 16%;
+		    background: top;
+		    border: none;
+		    border-radius: 28px;
+		}
+		#done-projects_details{
+			position: absolute;
+			top: 65%;
+			left: 55%;
+			color:#fff;
+			font-family: 'Dosis', sans-serif;
+			font-weight: bold;
+			z-index: 10;
+			width: 45%;
+		    height: 16%;
+		    background: top;
+		    border: none;
+		    border-radius: 28px;
+		}
+		#personal_details:focus ,#done-projects_details:focus ,#professional_details:focus{
+			outline:none;
+		}
+		#professional_details{
+			position: absolute;
+			top: 83%;
+			left: 55%;
+			color:#fff;
+			font-family: 'Dosis', sans-serif;
+			font-weight: bold;
+			z-index: 10;
+			width: 45%;
+		    height: 16%;
+		    background: top;
+		    border: none;
+		    border-radius: 28px;
+		}
+		#covering{
+			background: #fff;
+		    width: 59%;
+		    position: absolute;
+		    height: 16%;
+		    top: 42%;
+		    left: 51%;
+		    border-radius: 23px;
+			z-index: 5;
+		}
+		/*.forms{
+			position: relative;
+    		left: 16%;
+		}*/
+		.form-control{
+			width: 50%;
+		}
+		#a{
+			margin-right:30%;
+		}
+		#abc{
+			margin-left:10%;
+		}
+		#personal,#done-projects,#professional{
+			margin-left: 40%;
+			width: 100%;
+			padding-left: 35%;
+		    width: 100%;
+		    box-shadow: 0 10px 14px 0 rgba(0,0,0,0.2);
+		    margin-left: 2%;
+		    height: 40%;
+		    position: relative;
+		    z-index: 10;
+		    display:inline-flex;
+		    flex:auto;
+		}
+		#done-projects,#professional{
+			display: none;
+		}
+		#check{
+			position: absolute;
+		}
+		#iot{
+			margin-right: 86%;
+		}
+		#Emb-sys{
+
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-4 purple">
+				<h5 class="display-4 name">Vedha Krishna</h5>
+				<img src="myprofile.jpg" class="my-profle img-thumbnail">
+				<div id="covering"></div>
+				<div>
+					<button id="personal_details">Personal Details</button>
+				</div>
+				<div>
+					<button id="professional_details">Professional Life</button>
+				</div>
+				<div>
+					<button id="done-projects_details">Projects Accomplished</button>
+				</div>
+			</div>
+			<div class="col-md-6 forms">
+				<div id="personal" style="height: 40%;">
+					<form method="POST" action="/edit-done">
+						<h3>Personal Details</h3>
+						<div class="form-group">
+					    <label for="exampleInputEmail1" id="abc">First Name</label>
+					    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" name="firstname">
+					 	</div>
+						<div class="form-group">
+					    <label for="exampleInputEmail1" id="abc">Last Name</label>
+					    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" name="lastname">
+					 	</div>
+						<div class="form-group">
+					    <label for="exampleInputEmail1" id="abc">Email address</label>
+					    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username">
+					  	</div>
+						<div class="form-group">
+					    <label for="exampleInputEmail1" id="abc">Mobile Number</label>
+					    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"placeholder="Enter Mobile Number"name="number">
+					  	</div>
+						<div class="input-group">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text">About Yourself</span>
+						  </div>
+						  <textarea class="form-control" id="a" aria-label="With textarea" 
+						  name="aboutme"></textarea >
+						</div>
+						  <br>
+						<button type="button" class="btn btn-outline-success" id="abc">Submit
+						</button>
+					</form>
+				</div>
+				<br>
+				<br>
+				<div id="done-projects">
+					<form method="POST" action="/edit-done">
+						<br>
+						<h3>Project Details</h3>
+						<div class="form-group">
+					    <label for="exampleInputEmail1">Project Title</label>
+					    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Project Title">
+					 	</div>
+						<div class="input-group">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text">About Project</span>
+						  </div>
+						  <br>
+						  <textarea class="form-control" id="a" aria-label="With textarea"></textarea >
+						</div>
+						<button type="button" class="btn btn-outline-success" id="abc">Submit
+						</button>
+					</form>
+				</div>
+				<br>
+				<div id="professional" style="top: 2%;margin-left: 10px;">
+					<form method="POST" action="/edit-done">
+						<br>
+						<h3>Professional Details</h3>
+						<br>
+						<div class="form-group">
+					    <label for="exampleInputEmail1" >Number of workshops attended</label>
+					    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="workshops attended">
+					 	</div>
+						<div class="form-group">
+					    <label for="exampleInputEmail1">Number of papers written
+					    </label>
+					    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="no. of papers written">
+					 	</div>
+						<div class="form-group">
+					    <label for="exampleInputEmail1">Number of journals written</label>
+					    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="journals written">
+					  	</div>
+					  	<div class="form-group">
+					    <label for="exampleInputEmail1">Number of patents recieved
+					    </label>
+					    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="patents recieved">
+					  	</div>
+					  	<div class="form-group">
+					    <label for="exampleInputEmail1">no. of competetions participated</label>
+					    <input type="number"class="form-control"id="exampleInputEmail1" aria-describedby="emailHelp" 
+					    placeholder="competetions participated">
+					  	</div>
+					  	<button type="button" class="btn btn-outline-success" id="abc">Submit
+						</button>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>		
+	</header>
+
+<script>
+	var personal_det=document.getElementById('personal_details').addEventListener("click",(event) =>{
+		document.getElementById('personal_details').style.color="black";
+		document.getElementById('professional_details').style.color="#fff";
+		document.getElementById('done-projects_details').style.color="#fff";
+		document.getElementById('covering').style.top="42%";
+		document.getElementById('covering').style.display="inline-flex"
+		document.getElementById('covering').style.transition="0.5s";
+		document.getElementById('professional_details').style.transition="1s";
+		document.getElementById('done-projects').style.visibility="hidden";
+		document.getElementById('done-projects').style.transition="5s";
+		document.getElementById('professional').style.visibility="hidden";
+		document.getElementById('professional').style.transition="5s";
+		document.getElementById('personal').style.display="inline-flex";
+		document.getElementById('personal').style.transition="0.5s";
+	}) 
+	var professional_det=document.getElementById('professional_details').addEventListener("click",(event) =>{
+		document.getElementById('covering').style.top="83%";
+		document.getElementById('professional_details').style.color="black";
+		document.getElementById('professional_details').style.transition="1s";
+		document.getElementById('personal_details').style.color="#fff";
+		document.getElementById('done-projects_details').style.color="#fff";
+		document.getElementById('covering').style.display="block";
+		document.getElementById('covering').style.transition="0.5s";
+		document.getElementById('done-projects').style.display="none";
+		document.getElementById('personal').style.display="none";
+		document.getElementById('professional').style.display="inline-flex";
+	}) ; 
+	var projects_done_det=document.getElementById('done-projects_details').addEventListener("click",(event) =>{
+		document.getElementById('covering').style.top="65%";
+		document.getElementById('done-projects_details').style.color="black";
+		document.getElementById('done-projects_details').style.transition="1s";
+		document.getElementById('personal_details').style.color="#fff";
+		document.getElementById('professional_details').style.color="#fff";
+		document.getElementById('covering').style.display="block";
+		document.getElementById('covering').style.transition="0.5s";
+		document.getElementById('personal').style.display="none";
+		document.getElementById('professional').style.display="none";
+		document.getElementById('done-projects').style.display="inline-flex";
+	}) ; 
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
