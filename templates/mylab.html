@@ -8,6 +8,7 @@
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/dacf88b734.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<style>
 		html,body{
 			padding:0px;
@@ -66,13 +67,14 @@
 		    left: 33%;
 		}
 		.addsvg{
-			width: 166%;
+			width: 92%;
 		    position: absolute;
-		    left: -73%;
+		    left: 0%;
 		}
 		#forms{
 			position: relative;
 			display: none;
+			left: 97%;
 		}
 		#part-2,#part-3{
 			display: none;
@@ -87,6 +89,16 @@
 			margin-top: 7%;
 			margin-left: 5px;
 		}
+/*		.slideOutLeft {
+		  animation: ltr;
+		  animation-duration: 2s;
+		  position: relative;
+		  left:93%;
+		}
+		@keyframes ltr{
+			from(left:93%);
+			to(left:0%);
+		}*/
 		@media (max-width: 768px){
 			.navbar{
 				width:90%;
@@ -109,6 +121,11 @@
 			.card1{
 				left: -70%;
     			top: 152%;
+			}
+			#forms{
+				position: relative;
+				display: none;
+				left: 97%;
 			}
 			.txt{
 			    top: 46%;
@@ -164,7 +181,6 @@
 			      </li>
 			    </ul>
 			  </div>
-			</div>
 			</nav>
 		</div>
 		</header>
@@ -172,7 +188,7 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col">
-				<div id="newproject">
+				<div class="newproject" id="animation_lr">
 					<h3 id="urproj">Your Projects</h3>
 					<br>
 					<div class="card addpro">
@@ -185,9 +201,9 @@
 			</div>
 			
 			<div class="col">
-			<div id="project">   <!-- here should be an ejs code -->
+			<div class="project">   <!-- here should be an ejs code -->
 			<div class="card card1 xyz">
-			  <div class="card-body">
+			  <div class="card-body"  id="animation_lr">
 			    <h5 class="card-title">Card title</h5>
 			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 			  </div>
@@ -200,8 +216,8 @@
 		</div>
 		<div id="forms">
 			<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-9">
+			<div class="col-md-2"></div>
+			<div class="col-md-7">
 			<form action="/new-project" method="POST">
 				<div id="part-1">
 				<div class="form-group">
@@ -234,29 +250,53 @@
 				</div>
 			</form>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<img class="addsvg" src="add.svg">
 			</div>
 		</div>
 		</div>
 		</main>
 <script>
-	var new_project = document.getElementById('newproject').addEventListener("click",(event) =>{
+	var new_project = document.querySelector('.newproject').addEventListener("click",(event) =>{
 		document.getElementById("forms").style.display="block";
-		for(var pos=93;pos>5;pos--){
-			setTimeout(move(pos),500);
-		}
-		function move(pos){
-				if(pos == 5)
-				{
-					return ;
-				}
-				document.getElementById("forms").style.left=pos.toString()+"%";
-				console.log(pos);
-			}
+		document.getElementById("forms").style.width="100%";
+		 var element123=document.getElementById("forms");
+		 document.getElementById("forms").style.position="absolute";
+		document.getElementById("forms").style.top="45%";
+		// var animate;
+		// //animate = setInterval(move(93),20);
+		// for(var pos=93;pos>5;pos--){
+		// 	animate = setTimeout(move(pos),1000);
+		// 	sayhello();
+		// }
+		// //console.log(left.offsetLeft);
+		// //left.innerHTML = left.offsetLeft;
+		// function sayhello(){
+		// 	clearTimeout(animate);
+		// }
+		// function move(pos){
+		// 		document.getElementById("forms").style.left=pos.toString()+"%";
+		// 		//document.getElementById("forms").style.transition="	3s";
+		// 		console.log(pos);
+		// 		pos=pos-1;
+		// 		if(pos==5){
+		// 			clearTimeout(animate);
+		// 			return ;
+		// 		}
+		// 	}
+		element123.classList.add('animated','slideOutLeft');
+
+		element123.addEventListener('animationend', function() { 
+				element123.classList.remove('animated');
+				element123.classList.remove('slideOutLeft');
+				document.getElementById("forms").style.display="block";
+				document.getElementById("forms").style.left="0%";
+		})
 		document.getElementById("body_head").style.display="none";
-		document.getElementById("newproject").style.display="none";
-	}) 
+		document.querySelector("#animation_lr").style.display="none";
+		document.querySelector(".xyz").style.display="none";
+	}
+	) 
 
 	var form_info1=document.getElementById('f1').addEventListener("click",(event) =>{
 		document.getElementById("part-1").style.display="none";
