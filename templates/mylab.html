@@ -89,6 +89,13 @@
 			margin-top: 7%;
 			margin-left: 5px;
 		}
+		.fa-times{
+			position: absolute;
+		    top: -63%;
+		    left: 115%;
+		    font-size: 59px;
+		    color: tomato;
+		}
 /*		.slideOutLeft {
 		  animation: ltr;
 		  animation-duration: 2s;
@@ -218,6 +225,7 @@
 			<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-7">
+				<i class="fas fa-times" onclick="back()"></i>
 			<form action="/new-project" method="POST">
 				<div id="part-1">
 				<div class="form-group">
@@ -260,6 +268,7 @@
 	var new_project = document.querySelector('.newproject').addEventListener("click",(event) =>{
 		document.getElementById("forms").style.display="block";
 		document.getElementById("forms").style.width="100%";
+		document.getElementById("forms").style.left="97%";
 		 var element123=document.getElementById("forms");
 		 document.getElementById("forms").style.position="absolute";
 		document.getElementById("forms").style.top="45%";
@@ -290,13 +299,27 @@
 				element123.classList.remove('animated');
 				element123.classList.remove('slideOutLeft');
 				document.getElementById("forms").style.display="block";
-				document.getElementById("forms").style.left="0%";
+				document.getElementById("forms").style.left="-1%";
 		})
 		document.getElementById("body_head").style.display="none";
 		document.querySelector("#animation_lr").style.display="none";
 		document.querySelector(".xyz").style.display="none";
 	}
 	) 
+
+	function back(){
+		 var element123=document.getElementById("forms");
+		element123.classList.add('animated','slideOutRight');
+		element123.addEventListener('animationend', function() { 
+				element123.classList.remove('animated');
+				element123.classList.remove('slideOutRight');
+				document.getElementById("forms").style.display="none";
+				document.getElementById("forms").style.left="0%";
+		})
+		document.getElementById("body_head").style.display="block";
+		document.querySelector("#animation_lr").style.display="block";
+		document.querySelector(".xyz").style.display="block";
+	}
 
 	var form_info1=document.getElementById('f1').addEventListener("click",(event) =>{
 		document.getElementById("part-1").style.display="none";
