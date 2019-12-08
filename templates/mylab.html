@@ -103,6 +103,9 @@
 			from(left:93%);
 			to(left:0%);
 		}*/
+		#part-2{
+			box-sizing: border-box;
+		}
 		@media (max-width: 768px){
 			.navbar{
 				width:90%;
@@ -239,8 +242,8 @@
 				</div>
 				<div id="part-2">
 					<div class="form-group">
-					    <label>person : 1</label>
-					    <input class="form-control" type="text" style="width:40%;">
+					    <label id="p1">person : 1</label>
+					    <input class="form-control"name="p1" type="text" style="width:40%;">
 					</div>
 					<button type="button" id="f2" class="btn btn-outline-info">Continue</button>
 				</div>
@@ -302,6 +305,25 @@
 	function count(){
 		var userInput = document.querySelector("#nop").value;
 		console.log(userInput);
+		var part2 = document.getElementById("part-2");
+		for(var ijk =2 ; ijk<=userInput ; ijk++ )
+		{
+			console.log(ijk)
+			var divs = document.createElement('div');
+			divs.setAttribute('class','form-group'); 
+			var labels = document.createElement('label');
+			labels.setAttribute('id','p'+ijk.toString());
+			var input = document.createElement('input');
+			input.type='text';
+			input.setAttribute('name','p'+ijk.toString());
+			input.setAttribute('class','form-control');
+			input.setAttribute('style','width:40%;');
+			part2.appendChild(divs);
+			divs.appendChild(labels);
+			document.getElementById("p"+ijk.toString()).innerHTML="person : "+ijk.toString()
+			divs.appendChild(input);
+		}
+		console.log("");
 	}
 	var form_info1=document.getElementById('f1').addEventListener("click",(event) =>{
 		document.getElementById("part-1").style.display="none";
