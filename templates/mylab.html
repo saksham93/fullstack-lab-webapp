@@ -82,9 +82,6 @@
 		.card-title{
 			   text-align: center;
 		}
-		.xyz{
-			left: -27%;
-		}
 		#urproj{
 			margin-top: 7%;
 			margin-left: 5px;
@@ -191,10 +188,12 @@
 			</nav>
 		</div>
 		</header>
+		<br>
+		<br>
 		<main id="body_main">
 		<div class="row">
 			<div class="col-md-1"></div>
-			<div class="col">
+			<div class="col-md-3">
 				<div class="newproject" id="animation_lr">
 					<h3 id="urproj">Your Projects</h3>
 					<br>
@@ -207,7 +206,7 @@
 				</div>
 			</div>
 			
-			<div class="col">
+			<div class="col-md-3">
 			<div class="project">   <!-- here should be an ejs code -->
 			<div class="card card1 xyz">
 			  <div class="card-body"  id="animation_lr">
@@ -229,36 +228,33 @@
 			<form action="/new-project" method="POST">
 				<div id="part-1">
 				<div class="form-group">
-					    <label for="exampleInputEmail1">Project Name</label>
-					    <input type="text" class="form-control" id="exampleInputEmail1 abc" aria-describedby="emailHelp" placeholder="Project Name" name="pname"
-					    style="width: 40%;">
+					    <label>Project Name</label>
+					    <input class="form-control" type="text" placeholder="Project Name" style="width:40%;">
 				</div>
 				<div class="form-group">
-					    <label for="exampleInputEmail1">Number Of People</label>
-					    <input type="text" class="form-control" id="exampleInputEmail1 abc" aria-describedby="emailHelp" placeholder="Number Of people" 
-					    name="no_of_people"
-					    style="width: 40%;">
+					    <label>Number Of People</label>
+					    <input class="form-control" id="nop" type="number" style="width:40%;" value="1">
 				</div>
-				<button type="button" id="f1" class="btn btn-outline-info">Continue</button>
+				<button type="button" id="f1" onclick="count()" class="btn btn-outline-info">Continue</button>
 				</div>
 				<div id="part-2">
 					<div class="form-group">
-					    <label for="exampleInputEmail1">person : 1</label>
-					    <input type="text" class="form-control" id="exampleInputEmail1 abc" aria-describedby="emailHelp" placeholder="person Name" name="person_name"
-					    style="width: 40%;">
+					    <label>person : 1</label>
+					    <input class="form-control" type="text" style="width:40%;">
 					</div>
 					<button type="button" id="f2" class="btn btn-outline-info">Continue</button>
 				</div>
 				<div id="part-3">
 					<label>About Project</label>
-					<textarea class="form-control" id="a" aria-label="With textarea" 
-					placeholder="About Project" name="about_project"></textarea>
+					<textarea required="required" class="form-control" id="a" aria-label="With textarea" 
+					placeholder="About Project" name="about_project" ></textarea>
 					<br>
 					<button type="button" id="f3" class="btn btn-outline-success">submit</button>
 				</div>
 			</form>
 			</div>
 			<div class="col-md-3">
+				<i class="fas fa-times" onclick="back()"></i>
 				<img class="addsvg" src="add.svg">
 			</div>
 		</div>
@@ -272,27 +268,10 @@
 		 var element123=document.getElementById("forms");
 		 document.getElementById("forms").style.position="absolute";
 		document.getElementById("forms").style.top="45%";
-		// var animate;
-		// //animate = setInterval(move(93),20);
-		// for(var pos=93;pos>5;pos--){
-		// 	animate = setTimeout(move(pos),1000);
-		// 	sayhello();
-		// }
-		// //console.log(left.offsetLeft);
-		// //left.innerHTML = left.offsetLeft;
-		// function sayhello(){
-		// 	clearTimeout(animate);
-		// }
-		// function move(pos){
-		// 		document.getElementById("forms").style.left=pos.toString()+"%";
-		// 		//document.getElementById("forms").style.transition="	3s";
-		// 		console.log(pos);
-		// 		pos=pos-1;
-		// 		if(pos==5){
-		// 			clearTimeout(animate);
-		// 			return ;
-		// 		}
-		// 	}
+		document.getElementById("part-1").style.display="block";
+		document.getElementById("part-2").style.display="none";
+		document.getElementById("part-3").style.display="none";
+
 		element123.classList.add('animated','slideOutLeft');
 
 		element123.addEventListener('animationend', function() { 
@@ -320,7 +299,10 @@
 		document.querySelector("#animation_lr").style.display="block";
 		document.querySelector(".xyz").style.display="block";
 	}
-
+	function count(){
+		var userInput = document.querySelector("#nop").value;
+		console.log(userInput);
+	}
 	var form_info1=document.getElementById('f1').addEventListener("click",(event) =>{
 		document.getElementById("part-1").style.display="none";
 		document.getElementById("part-3").style.display="none";
@@ -331,7 +313,6 @@
 		document.getElementById("part-2").style.display="none";
 		document.getElementById("part-3").style.display="block";
 	}) 
-
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
