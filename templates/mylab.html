@@ -58,7 +58,6 @@
 			width: 16rem;
     		height: 230px;
     		box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2); 
-    		position: absolute;
     		top: 90%;
 		}
 		.txt{
@@ -87,24 +86,17 @@
 			margin-left: 5px;
 		}
 		.fa-times{
-			position: absolute;
-		    top: -63%;
-		    left: 115%;
+			position: fixed;
+		    top: 23%;
+		    left: 82%;
 		    font-size: 59px;
 		    color: tomato;
+		    z-index: 20;
 		}
-/*		.slideOutLeft {
-		  animation: ltr;
-		  animation-duration: 2s;
-		  position: relative;
-		  left:93%;
-		}
-		@keyframes ltr{
-			from(left:93%);
-			to(left:0%);
-		}*/
-		#part-2{
-			box-sizing: border-box;
+		#total{
+			text-align: center;
+			padding-bottom: 20px;
+			padding-top: 20px;
 		}
 		@media (max-width: 768px){
 			.navbar{
@@ -124,6 +116,7 @@
 			}
 			.addpro{
 				height: 54px;
+				left: 15%;
 			}
 			.card1{
 				left: -70%;
@@ -147,14 +140,16 @@
 				display: none;
 			}
 			.xyz {
-				left: -72%;
-			}
-			.addpro{
-				left: 28%;
+				left: 15%;
+				margin-top: 25px;
 			}
 			#urproj{
 				margin-top: 13%;
    				margin-left: 63px;
+			}
+			#total{
+				text-align: center;
+				padding-bottom: 20px;
 			}
 		}
 	</style>
@@ -193,13 +188,20 @@
 		</header>
 		<br>
 		<br>
+
 		<main id="body_main">
+		<div class="row" id="remove">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h2 id="total">My Projects</h2>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-3">
 				<div class="newproject" id="animation_lr">
-					<h3 id="urproj">Your Projects</h3>
-					<br>
 					<div class="card addpro">
 					  <div class="card-body">
 					    <h5 class="card-title"><i class="fas fa-plus"></i></h5>
@@ -232,7 +234,7 @@
 				<div id="part-1">
 				<div class="form-group">
 					    <label>Project Name</label>
-					    <input class="form-control" type="text" placeholder="Project Name" style="width:40%;">
+					    <input class="form-control" type="text" placeholder="Project Name" style="width:40%;" id="pname">
 				</div>
 				<div class="form-group">
 					    <label>Number Of People</label>
@@ -243,9 +245,8 @@
 				<div id="part-2">
 					<div class="form-group">
 					    <label id="p1">person : 1</label>
-					    <input class="form-control"name="p1" type="text" style="width:40%;">
+					    <input class="form-control"name="p1" placeholder="person 1 name (leader)" type="text" style="width:40%;">
 					</div>
-					<button type="button" id="f2" class="btn btn-outline-info">Continue</button>
 				</div>
 				<div id="part-3">
 					<label>About Project</label>
@@ -257,7 +258,7 @@
 			</form>
 			</div>
 			<div class="col-md-3">
-				<i class="fas fa-times" onclick="back()"></i>
+				<i class="fas fa-times cross" onclick="back()"></i>
 				<img class="addsvg" src="add.svg">
 			</div>
 		</div>
@@ -265,6 +266,7 @@
 		</main>
 <script>
 	var new_project = document.querySelector('.newproject').addEventListener("click",(event) =>{
+		document.getElementById("remove").style.display="none"
 		document.getElementById("forms").style.display="block";
 		document.getElementById("forms").style.width="100%";
 		document.getElementById("forms").style.left="97%";
@@ -290,7 +292,8 @@
 	) 
 
 	function back(){
-		 var element123=document.getElementById("forms");
+		document.getElementById("remove").style.display="block"
+		var element123=document.getElementById("forms");
 		element123.classList.add('animated','slideOutRight');
 		element123.addEventListener('animationend', function() { 
 				element123.classList.remove('animated');
@@ -301,14 +304,16 @@
 		document.getElementById("body_head").style.display="block";
 		document.querySelector("#animation_lr").style.display="block";
 		document.querySelector(".xyz").style.display="block";
+		var parent = document.getElementById("part-2");
+		parent.innerHTML = '';
+		document.getElementById("pname").value="";
+		document.getElementById("a").value="";
 	}
 	function count(){
 		var userInput = document.querySelector("#nop").value;
-		console.log(userInput);
 		var part2 = document.getElementById("part-2");
 		for(var ijk =2 ; ijk<=userInput ; ijk++ )
 		{
-			console.log(ijk)
 			var divs = document.createElement('div');
 			divs.setAttribute('class','form-group'); 
 			var labels = document.createElement('label');
@@ -318,22 +323,29 @@
 			input.setAttribute('name','p'+ijk.toString());
 			input.setAttribute('class','form-control');
 			input.setAttribute('style','width:40%;');
+			input.setAttribute('placeholder','person '+ijk.toString()+' name');
 			part2.appendChild(divs);
 			divs.appendChild(labels);
 			document.getElementById("p"+ijk.toString()).innerHTML="person : "+ijk.toString()
 			divs.appendChild(input);
 		}
-		console.log("");
+		var buttons = document.createElement('button');
+		buttons.type='button';
+		buttons.setAttribute('id','f2');
+		buttons.setAttribute('class','btn');
+		part2.appendChild(buttons);
+		document.getElementById('f2').classList.add("btn-outline-info");
+		document.getElementById('f2').innerHTML="Continue";
+		var form_info2=document.getElementById('f2').addEventListener("click",(event) =>{
+		document.getElementById("part-1").style.display="none";
+		document.getElementById("part-2").style.display="none";
+		document.getElementById("part-3").style.display="block";
+	}) 
 	}
 	var form_info1=document.getElementById('f1').addEventListener("click",(event) =>{
 		document.getElementById("part-1").style.display="none";
 		document.getElementById("part-3").style.display="none";
 		document.getElementById("part-2").style.display="block";
-	}) 
-	var form_info2=document.getElementById('f2').addEventListener("click",(event) =>{
-		document.getElementById("part-1").style.display="none";
-		document.getElementById("part-2").style.display="none";
-		document.getElementById("part-3").style.display="block";
 	}) 
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
