@@ -4,6 +4,8 @@ var express=require("express");
 var app = express();
 var bodyParser=require('body-parser');
 
+var senddata=require("./authenticate");
+
 var app = express();
 app.use(express.static("templates"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -11,11 +13,14 @@ app.use(express.json());
 
 app.post("/new-project",function(req,res)
 {
+	var arr=[];
+	for(var i=0;i<req.body.no_of_people;i++){
+		arr.push(req.body.p+)  // code to push all the prople into the array
+	}
 	var obj={
-		pname:req.body.pname,
-		no_of_people:req.body.no_of_people,
-		// make a logic to get names of all the people for this project people
-		about_project:req.body.about_project
+			pname:req.body.pname,
+			no_of_people:req.body.no_of_people,
+			about_project:req.body.about_project,
 		}
 	
 	res.sendFile(__dirname+"/templates/mylab.html");
