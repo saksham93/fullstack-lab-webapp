@@ -244,8 +244,6 @@
 				</div>
 				<div id="part-2">
 					<div class="form-group">
-					    <label id="p1">person : 1</label>
-					    <input class="form-control"name="p1" placeholder="person 1 name (leader)" type="text" style="width:40%;">
 					</div>
 				</div>
 				<div id="part-3">
@@ -312,7 +310,7 @@
 	function count(){
 		var userInput = document.querySelector("#nop").value;
 		var part2 = document.getElementById("part-2");
-		for(var ijk =2 ; ijk<=userInput ; ijk++ )
+		for(var ijk =1 ; ijk<=userInput ; ijk++ )
 		{
 			var divs = document.createElement('div');
 			divs.setAttribute('class','form-group'); 
