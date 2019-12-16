@@ -103,9 +103,9 @@
 			box-sizing: border-box;
 			font-family: sans-serif;
 		}
-		#mentorsir,#insidehut{
+/*		#mentorsir,#insidehut{
 			display: none;
-		}
+		}*/
 		.progress-container {
 		  width: 100%;
 		  height: 8px;
@@ -351,20 +351,31 @@ function myFunction() {
 	setInterval(rotating,1000);
 var k=0;
 var m=0;
-	window.addEventListener('scroll',function(){
-	    if(Math.ceil(window.scrollY)>=158){
-	    	setTimeout(ms(), 1500);
-	    }
-	    if(Math.ceil(window.scrollY)>=650){
-	    	setTimeout(ih(), 1500);
-	    }
-	    function ih(){
-	    	document.getElementById("insidehut").style.opacity="";
-	    }
-	    function ms(){
-	    	document.getElementById("mentorsir").style.display="";
-	    }
-	})
+
+	// window.addEventListener('scroll',function(){
+	//     if(Math.ceil(window.scrollY)>=158){
+	//     	var hello1=setInterval(ms(k+0.25), 1500);
+	//     }
+	//     if(Math.ceil(window.scrollY)>=650){
+	//     	var hello2=setInterval(ih(m), 1500);
+	//     }
+	//     function ih(m){
+	//     	console.log("abc");
+	//     	document.getElementById("insidehut").style.opacity=m.toString();
+	//     	if(m==1){
+	//     		clearInterval(hello1);
+	//     	}
+	//     	m=m+0.25;
+	//     }
+	//     function ms(k){
+	//     	console.log("abc123");
+	//     	document.getElementById("mentorsir").style.opacity=k.toString();
+	//     	if(k==1){
+	//     		clearInterval(hello2);
+	//     	}
+	//     	k=k+0.25;
+	//     }
+	// })
 </script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
