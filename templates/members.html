@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<title>Web Page</title>
+	<title>Members</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -12,32 +12,86 @@
 			padding:0;
 			width: 100%;
 			height: 100%; 
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #222;
+			min-height: 100vh;
 		}
-		.header{
-			height: 170px; 
-		}
-		.row{
-			position: absolute;
-		    z-index: 100;
-		    top: -39%;
-		    left: 0;
-		}
-		canvas{
+		.container{
 			position: relative;
+			width: 1000px;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin: 20px;
+		}
+		.container .card{
+			position: relative;
+			height: 250px;
+			background: #fff;
+			display: flex;
+			width: 45%;
+			margin: 30px 0;
 		}
 	</style>
 </head>
 <body>
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10 header">
-			<div class="members">
-				
+	
+	<div class="container">
+		<div class="card">
+			<div calss="imgbox">
+				<img src="myprofile.jpg" style="width: 12%;" data-text="Design">
+			</div>
+			<div class="content">
+				<div>
+					<h3>Design</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+					<a href="#">read more</a>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
+		<div class="card">
+			<div calss="imgbox">
+				<img src="myself.jpg" style="width: 12%;" data-text="Myself">
+			</div>
+			<div class="content">
+				<div>
+					<h3>Myself</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+					<a href="#">read more</a>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div calss="imgbox">
+				<img src="myprofile.jpg" style="width: 12%;" data-text="Design">
+			</div>
+			<div class="content">
+				<div>
+					<h3>Design</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+					<a href="#">read more</a>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div calss="imgbox">
+				<img src="myself.jpg" style="width: 12%;" data-text="Myself">
+			</div>
+			<div class="content">
+				<div>
+					<h3>Myself</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+					<a href="#">read more</a>
+				</div>
+			</div>
+		</div>
 	</div>
-<canvas id="c" width="1530" height="700"></canvas>
+
+
+
+<!-- <canvas id="c" width="1530" height="700"></canvas> -->
 	<script>
 		var c = document.querySelector("#c");
 		var ctx = c.getContext("2d");
