@@ -4,15 +4,34 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>Members</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<style>
 		.data{
-			display: none;
+			position: absolute;
+    		top: 15%;
+    		z-index: -5;
 		}
-		.card::hover{
-
+		.img:focus{
+			transform: translate(87px, -89px);
+   			width: 50%;
+   			transition: 1s;
+   			background-repeat: none;
+   			height: 132px;
+   			position: relative;
+		}
+		.img::after{
+			  content: '';
+			  position: absolute;
+			  z-index: -1; 
+			  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+			  width: 70%;
+			  left: 15%;
+			  height: 100px;
+			  bottom: 0;
+		}
+		.img:focus > .data{
+			display: initial;
 		}
 	</style>
 </head>
@@ -26,9 +45,9 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-3">
-		<div class="card" style="width: 18rem;">
-		<div class="image">
-		  <img src="myprofile.jpg" class="card-img-top" alt="...">
+		<div class="card">
+		<div class="image" style="justify-content: center;">
+		  <img src="myprofile.jpg" class="card-img-top img" alt="..."  tabindex="1" >
 		</div>
 		  <div class="data">
 		  <div class="card-body">
@@ -41,9 +60,9 @@
 		</div>
 		<div class="col-md-4"></div>
 		<div class="col-md-3">
-		<div class="card" style="width: 18rem;">
-		<div class="image">
-		  <img src="myself.jpg" class="card-img-top" alt="..." style="height: 270px;">
+		<div class="card">
+		<div class="image" style="justify-content: center;">
+		  <img src="myself.jpg" class="card-img-top img" alt="..."  tabindex="2" >
 		</div>
 		  <div class="data">
 		  <div class="card-body">
@@ -57,7 +76,27 @@
 		<div class="col-md-1"></div>
 	</div>
 
-	
+	<script>
+		// function clicked(){
+		// 	document.querySelector(".data").style.display="block";
+		// 	document.querySelector(".data").style.transition="1s";
+		// 	document.querySelector(".card").style.height="95%";
+		// }
+
+		// img_array=document.querySelectorAll(".img");
+		// for(var i=0;img_array.length;i++){
+		// 	img_array[i].addEventListener("click",function(event){
+		// 		if(event.type=="click"){
+		// 			document.querySelector(".data").style.display="block";
+		// 			document.querySelector(".data").style.transition="1s";
+		// 			document.querySelector(".card").style.height="95%";
+		// 		}
+		// 		else{
+		// 			document.querySelector(".data").style.display="none";
+		// 		}
+		// 	});
+		// }
+	</script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
