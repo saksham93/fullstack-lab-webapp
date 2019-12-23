@@ -17,6 +17,7 @@ var store = new MongoDBStore({
 
 var app = express();
 app.use(express.static("templates"));
+app.set('view engine','ejs');
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
@@ -85,8 +86,8 @@ app.get("/my-lab",function(req,res)
 	console.log(req.isAuthenticated());
 	res.sendFile(__dirname+"/templates/mylab.html");
 	const senddata=req.user;
-	console.log(typeof(senddata));
-	console.log(senddata)
+	console.log(senddata);
+	module.exports=senddata;
 });
 
 module.exports=senddata;
@@ -111,24 +112,24 @@ app.get("/edit-info",function(req,res)
 // 	} 
 
 
-// 	db.members.find(object,function(err,data)
-// 	{
-// 		if(err)
-// 		{
-// 			console.log(err);
-// 		}
-// 		else
-// 		{
-// 			if(data.length>0)
-// 			{ 
-// 				res.sendFile(__dirname+"/templates/mylab.html");
-// 			}
-// 			else
-// 			{
-// 				res.send("entered details are wrong")
-// 			}
-// 		}
-// 	});
+	// db.members.find(object,function(err,data)
+	// {
+	// 	if(err)
+	// 	{
+	// 		console.log(err);
+	// 	}
+	// 	else
+	// 	{
+	// 		if(data.length>0)
+	// 		{ 
+	// 			res.sendFile(__dirname+"/templates/mylab.html");
+	// 		}
+	// 		else
+	// 		{
+	// 			res.send("entered details are wrong")
+	// 		}
+	// 	}
+	// });
 
 // });
 
@@ -159,14 +160,9 @@ app.post("/register-done",[
 						password:hash,
 						mobile:req.body.number
 					}
-					db.members.insert(obj,function(err,data)
-					{	
-						if(err)
-						{
-							console.log(err)
-						}
-					});
-					db.members.find(obj,function(err,data,fields){
+
+					db.members.find(obj,function(err,data)
+					{
 						if(err)
 						{
 							console.log(err);
@@ -175,13 +171,41 @@ app.post("/register-done",[
 						{
 							if(data.length>0)
 							{ 
-								registerationdata=data;
-								req.login(data[0]._id,function(err){
-									res.redirect('/my-lab');
-								})
+								res.send("entered details are wrong");
+							}
+							else
+							{
+								// send the object to the admin...
+								res.render('templates/ejs1',{data});
+								console.log("data sent");
+								//res.send("Your details are sent to the admin so please wait upto his conformation");
 							}
 						}
 					});
+
+					// db.members.insert(obj,function(err,data)
+					// {	
+					// 	if(err)
+					// 	{
+					// 		console.log(err)
+					// 	}
+					// });
+					// db.members.find(obj,function(err,data,fields){
+					// 	if(err)
+					// 	{
+					// 		console.log(err);
+					// 	}
+					// 	else
+					// 	{
+					// 		if(data.length>0)
+					// 		{ 
+					// 			registerationdata=data;
+					// 			req.login(data[0]._id,function(err){
+					// 				res.redirect('/my-lab');
+					// 			})
+					// 		}
+					// 	}
+					// });
 				});
 			});
 	}
