@@ -36,7 +36,7 @@ var logindata=null;
 passport.use(new LocalStrategy(
   function(username, password, done) {
   	var mongojs = require("mongojs");
-	const db = mongojs("mongodb://vedha:krishna123@cluster0-shard-00-00-kbuhh.mongodb.net:27017/Hutlabs?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin",["members"]);
+	const db = mongojs("mongodb://vedha:krishna123@cluster0-shard-00-00-kbuhh.mongodb.net:27017/Hutlabs?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin",["members","student_wait_list"]);
 
 	var object={
 		email:username,
@@ -82,9 +82,10 @@ app.get("/register",function(req,res)
 });
 app.get("/admin",function(req,res)
 {
-	// var passedVariable = req.query.valid;
-	// console.log(passedVariable);
-	// res.render('admin')
+	findobj={};
+	db.student_wait_list.find(findobj,function(err,data){
+		res.render('admin',{data:data});
+	})
 });
 const senddata=undefined;
 app.get("/my-lab",function(req,res)
@@ -139,7 +140,6 @@ app.get("/edit-info",function(req,res)
 	// });
 
 // });
-var regdata=[];
 app.post('/login-done',passport.authenticate('local',{
 	successRedirect : '/my-lab',
 	failureRedirect : '/login'
@@ -167,11 +167,17 @@ app.post("/register-done",[
 						password:hash,
 						mobile:req.body.number
 					}
-					db.members.find(obj,function(err,data)
+					var checkobj={
+						fname:req.body.firstname,
+						lname:req.body.lastname,
+						email:req.body.username,
+						mobile:req.body.number
+					}
+					db.members.find(checkobj,function(err,data)
 					{
 						if(err)
 						{
-							console.log(err);
+							console.log("err with members");
 						}
 						else
 						{
@@ -182,21 +188,33 @@ app.post("/register-done",[
 							else
 							{
 								// send the object to the admin...
-								regdata.push(obj);
-								console.log(regdata);
-								res.render('admin',{data:regdata});
-								console.log("data sent");
+								db.student_wait_list.find(checkobj,function(err,data){
+									if(data.length>0){
+										res.send("simillar request has already sent by this user. please wait untill the admin's approval");
+										console.log("simillar request has already sent by this user. please wait untill the admin's approval");
+									}
+									else{	
+										db.student_wait_list.insert(obj,function(err,data){
+											if(err)
+											{
+												console.log("err")
+											}
+										});
+									}
+								});
+								//console.log("data sent");
 								//res.redirect('/admin?valid='+obj);
+								//res.send("success");
 							}
 						}
 					});
 
 					// db.members.insert(obj,function(err,data)
 					// {	
-					// 	if(err)
-					// 	{
-					// 		console.log(err)
-					// 	}
+						// if(err)
+						// {
+						// 	console.log(err)
+						// }
 					// });
 					// db.members.find(obj,function(err,data,fields){
 					// 	if(err)
