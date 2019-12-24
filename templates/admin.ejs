@@ -80,6 +80,23 @@
 			}
 		}
 	</style>
+	<script>
+			function notification(){
+				document.querySelector("#proj_lists").style.display="none";
+				document.querySelector("#notifications").style.display="block";
+				var name;
+				var names=document.querySelectorAll(".membership");
+				for(var i=0;i<names.length;i++){
+					name=names[i].querySelector("#regemail").innerText;
+					names[i].querySelector(".ac").setAttribute('name',name);
+				}
+			}
+			function workspace(){
+				document.querySelector("#proj_lists").style.display="block";
+				document.querySelector("#notifications").style.display="none"
+			}
+			
+		</script>
 </head>
 <body>
 
@@ -156,18 +173,22 @@
 				<div class="row">
 					<% data.forEach(function(item){ %>
 					<div class="col-md-4">
-						<div class="card">
+						<div class="card membership">
 						  <div class="card-body">
 						    <h6 class="card-title"><strong>Name : </strong>
 						    	<%= item.fname+" "+item.lname %></h6>
 						    <h6 class="card-text">
-						    	<strong>Email : </strong><%= item.email %></h6>
+						    	<strong>Email : </strong><span id="regemail"><%= item.email %></span></h6>
 						    <h6 class="card-text">	
 						    	<strong>Mobile Number : </strong><%= item.mobile %>
 						    </h6>
-						    <button type="button"class="btn btn-outline-success">Accept</button><br>
-						    <button type="button"id="remmem" class="btn btn-outline-danger">
-						    Reject</button>
+						    <form action="/add" method="GET">
+							    <button type="button"class="btn btn-outline-success ac"
+							     >Accept</button>
+							</form><br>
+							<form action="/reject" method="GET">
+							    <button type="button"id="remmem" class="btn btn-outline-danger">Reject</button>
+							</form>
 						  </div>
 						</div>
 					</div>
@@ -176,16 +197,7 @@
 			</div>
 		</div>
 		</main>
-		<script>
-			function notification(){
-				document.querySelector("#proj_lists").style.display="none";
-				document.querySelector("#notifications").style.display="block"
-			}
-			function workspace(){
-				document.querySelector("#proj_lists").style.display="block";
-				document.querySelector("#notifications").style.display="none"
-			}
-		</script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
