@@ -18,6 +18,7 @@ var store = new MongoDBStore({
 var app = express();
 app.use(express.static("templates"));
 app.set('view engine','ejs');
+app.set('views', __dirname + '/templates');
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
@@ -79,6 +80,12 @@ app.get("/register",function(req,res)
 {
 	res.sendFile(__dirname+"/templates/register.html");
 });
+app.get("/admin",function(req,res)
+{
+	// var passedVariable = req.query.valid;
+	// console.log(passedVariable);
+	// res.render('admin')
+});
 const senddata=undefined;
 app.get("/my-lab",function(req,res)
 {
@@ -132,7 +139,7 @@ app.get("/edit-info",function(req,res)
 	// });
 
 // });
-
+var regdata=[];
 app.post('/login-done',passport.authenticate('local',{
 	successRedirect : '/my-lab',
 	failureRedirect : '/login'
@@ -160,7 +167,6 @@ app.post("/register-done",[
 						password:hash,
 						mobile:req.body.number
 					}
-
 					db.members.find(obj,function(err,data)
 					{
 						if(err)
@@ -171,14 +177,16 @@ app.post("/register-done",[
 						{
 							if(data.length>0)
 							{ 
-								res.send("entered details are wrong");
+								res.send("user already exists");
 							}
 							else
 							{
 								// send the object to the admin...
-								res.render('templates/ejs1',{data});
+								regdata.push(obj);
+								console.log(regdata);
+								res.render('admin',{data:regdata});
 								console.log("data sent");
-								//res.send("Your details are sent to the admin so please wait upto his conformation");
+								//res.redirect('/admin?valid='+obj);
 							}
 						}
 					});
