@@ -12,6 +12,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var app = express();
 require('./admin')(app);
 require('./user_info')(app);
+require('./project')(app);
 
 var store = new MongoDBStore({
   uri: 'mongodb://vedha:krishna123@cluster0-shard-00-00-kbuhh.mongodb.net:27017/Hutlabs?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin',
@@ -162,18 +163,17 @@ app.post("/register-done",[
 	{		
 		bcrypt.genSalt(10, function(err, salt) {
    			bcrypt.hash(req.body.password_1, salt, function(err, hash) {
+   				var rno=req.body.rno.toUpperCase();
 					var obj={
 						fname:req.body.firstname,
 						lname:req.body.lastname,
 						email:req.body.username,
 						password:hash,
-						mobile:req.body.number
+						mobile:req.body.number,
+						rollnum:rno
 					}
 					var checkobj={
-						fname:req.body.firstname,
-						lname:req.body.lastname,
 						email:req.body.username,
-						mobile:req.body.number
 					}
 					db.members.find(checkobj,function(err,data)
 					{
@@ -192,8 +192,7 @@ app.post("/register-done",[
 								// send the object to the admin...
 								db.student_wait_list.find(checkobj,function(err,data){
 									if(data.length>0){
-										res.send("simillar request has already sent by this user. please wait untill the admin's approval");
-										console.log("simillar request has already sent by this user. please wait untill the admin's approval");
+										res.send("simillar request has already sent by this username. please wait untill the admin's approval");
 									}
 									else{	
 										db.student_wait_list.insert(obj,function(err,data){
