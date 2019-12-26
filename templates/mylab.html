@@ -98,6 +98,10 @@
 			padding-bottom: 20px;
 			padding-top: 20px;
 		}
+		#errornums{
+			font-size: 17px;
+    		color: red;
+		}
 		@media (max-width: 768px){
 			.navbar{
 				width:90%;
@@ -227,31 +231,39 @@
 		</div>
 		<div id="forms">
 			<div class="row">
-			<div class="col-md-2"></div>
+			<div class="col-md-2">
+			</div>
 			<div class="col-md-7">
 				<i class="fas fa-times" onclick="back()"></i>
-			<form action="/new-project" method="POST">
+			<form action="new-project" method="POST">
 				<div id="part-1">
 				<div class="form-group">
 					    <label>Project Name</label>
-					    <input class="form-control" type="text" placeholder="Project Name" style="width:40%;" id="pname">
+					    <input class="form-control uname" type="text" 
+					    placeholder="Project Name" name="projname" style="width:40%;" 
+					    id="pname">
 				</div>
 				<div class="form-group">
 					    <label>Number Of People</label>
-					    <input class="form-control" id="nop" type="number" style="width:40%;" value="1">
+					    <input class="form-control uname" id="nop" type="number" style="width:40%;" name="no_of_people" value="1">
 				</div>
-				<button type="button" id="f1" onclick="count()" class="btn btn-outline-info">Continue</button>
+				<button type="button" id="f1" name="formmove" onclick="count()" class="btn btn-outline-info">Continue</button>
 				</div>
 				<div id="part-2">
 					<div class="form-group">
 					</div>
 				</div>
 				<div id="part-3">
+					<div class="errorList">
+						<ol id="ols">
+
+						</ol>
+					</div>
 					<label>About Project</label>
-					<textarea required="required" class="form-control" id="a" aria-label="With textarea" 
-					placeholder="About Project" name="about_project" ></textarea>
+					<textarea required="required" class="form-control uname" id="a" aria-label="With textarea" placeholder="About Project" 
+					name="about_project"></textarea>
 					<br>
-					<button type="button" id="f3" class="btn btn-outline-success">submit</button>
+					<button type="button" name="formmove" onclick="checking()" id="f3" class="btn btn-outline-success regproj">submit</button>
 				</div>
 			</form>
 			</div>
@@ -262,6 +274,10 @@
 		</div>
 		</div>
 		</main>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script>
 	var new_project = document.querySelector('.newproject').addEventListener("click",(event) =>{
 		document.getElementById("remove").style.display="none"
@@ -320,6 +336,7 @@
 			input.type='text';
 			input.setAttribute('name','p'+ijk.toString());
 			input.setAttribute('class','form-control');
+			input.classList.add("uname");
 			input.setAttribute('style','width:40%;');
 			input.setAttribute('placeholder','person '+ijk.toString()+' name');
 			part2.appendChild(divs);
@@ -328,8 +345,9 @@
 			divs.appendChild(input);
 		}
 		var buttons = document.createElement('button');
-		buttons.type='button';
+		buttons.type='button';	
 		buttons.setAttribute('id','f2');
+		buttons.setAttribute('name','formmove');
 		buttons.setAttribute('class','btn');
 		part2.appendChild(buttons);
 		document.getElementById('f2').classList.add("btn-outline-info");
@@ -345,6 +363,38 @@
 		document.getElementById("part-3").style.display="none";
 		document.getElementById("part-2").style.display="block";
 	}) 
+	function checking(){
+		var data=document.querySelectorAll(".uname");
+		var i=0;
+		var errors=[];
+		for(i=0;i<data.length;i++){
+			if(data[i].value.length<=0)
+			{
+				errors.push(data[i].placeholder+" cannot be empty");
+			}
+		}
+		errors=errors.filter((item, i, ar) => ar.indexOf(item) === i)
+		if(errors.length == 0){
+				var regproj = document.querySelector(".regproj");
+				regproj.type="submit";
+				regproj.form.submit();
+		}
+		try{
+			var ols=document.querySelector("#ols");
+			ols.innerHTML=""
+		}
+		finally{
+			errors.forEach(function(item){
+				//var errorList=document.querySelector(".errorList");
+				var ols=document.querySelector("#ols");
+				var y = document.createElement('LI');
+				y.setAttribute('id','errornums')
+				var t = document.createTextNode(item);
+				y.appendChild(t);
+				ols.appendChild(y);
+			})
+		}
+	}
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
