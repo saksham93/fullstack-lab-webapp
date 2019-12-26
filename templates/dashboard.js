@@ -73,3 +73,13 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+
+
+document.getElementById("myChart").style.width="670px";
+function left(){
+
+}
+function right(){
+    
+}
