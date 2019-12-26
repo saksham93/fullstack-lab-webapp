@@ -59,7 +59,7 @@
 			display: none;
 		}
 		#remmem{
-		    margin-top: -84px;
+		    margin-top: -140px;
     		margin-left: 100px;
 		}
 		::-webkit-scrollbar {
@@ -88,7 +88,8 @@
 				var names=document.querySelectorAll(".membership");
 				for(var i=0;i<names.length;i++){
 					name=names[i].querySelector("#regemail").innerText;
-					names[i].querySelector(".ac").setAttribute('name',name);
+					names[i].querySelector(".ac").setAttribute('value',name);
+					names[i].querySelector("#remmem").setAttribute('value',name);
 				}
 			}
 			function workspace(){
@@ -136,7 +137,7 @@
 		</header>
 		<br>
 		<br>
-		<br>s
+		<br>
 		<main>
 			<div id="proj_lists">
 		<div class="row" id="remove">
@@ -183,11 +184,10 @@
 						    	<strong>Mobile Number : </strong><%= item.mobile %>
 						    </h6>
 						    <form action="/add" method="GET">
-							    <button type="button"class="btn btn-outline-success ac"
-							     >Accept</button>
+							    <button type="submit" name="accept" class="btn btn-outline-success ac">Accept</button>
 							</form><br>
 							<form action="/reject" method="GET">
-							    <button type="button"id="remmem" class="btn btn-outline-danger">Reject</button>
+							    <button type="submit"id="remmem" class="btn btn-outline-danger" name="reject">Reject</button>
 							</form>
 						  </div>
 						</div>
