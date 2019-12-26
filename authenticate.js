@@ -9,13 +9,15 @@ var session = require('express-session');
 var passport = require('passport');
 var MongoDBStore = require('connect-mongodb-session')(session);
 var LocalStrategy = require('passport-local').Strategy;
+var app = express();
+require('./admin')(app);
+require('./user_info')(app);
 
 var store = new MongoDBStore({
   uri: 'mongodb://vedha:krishna123@cluster0-shard-00-00-kbuhh.mongodb.net:27017/Hutlabs?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin',
   collection: 'sessions'
 });
 
-var app = express();
 app.use(express.static("templates"));
 app.set('view engine','ejs');
 app.set('views', __dirname + '/templates');
@@ -100,10 +102,10 @@ app.get("/my-lab",function(req,res)
 
 module.exports=senddata;
 
-app.get("/edit-info",function(req,res)
-{
-	res.sendFile(__dirname+"/templates/edit-info.html");
-});
+// app.get("/edit-info",function(req,res)
+// {
+// 	res.sendFile(__dirname+"/templates/edit_info.html");
+// });
 // app.post("/login-done/",[
 // 	check('username').isEmail(),
 // 	check('password').isLength({ min: 8 })
@@ -209,13 +211,7 @@ app.post("/register-done",[
 						}
 					});
 
-					// db.members.insert(obj,function(err,data)
-					// {	
-						// if(err)
-						// {
-						// 	console.log(err)
-						// }
-					// });
+					
 					// db.members.find(obj,function(err,data,fields){
 					// 	if(err)
 					// 	{
