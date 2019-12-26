@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>login</title>
+	<title>Register</title>
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<style>
 		*{
@@ -49,8 +49,7 @@
 			display: grid;
 			grid-template-columns: 7% 93%;
 			margin: 25px 0;
-			padding: 5px 0;
-			border-bottom: 2px solid #d9d9d9; 	
+			padding: 5px 0;	
 		}
 		.inp.one{
 			margin-top: 0;
@@ -72,12 +71,9 @@
 			display: none;
 			transition: .3s;
 		} 
-		.uname{
-			padding-left: 91px;
-    		border-radius: 23px;
-    		border: 2px solid limegreen;
-    		padding-top: 5px;
-   			padding-bottom: 7px;
+		#errornums{
+			font-size: 17px;
+    		color: red;
 		}
 		.btns{
 			margin-left: 120px;
@@ -153,58 +149,145 @@
 			<form action="register-done" id="login" method="POST">
 				<img class="abc" src="user.svg">
 				<h2 class="wel">Welcome</h2>
+				<br>
+				<div class="errorList">
+					<ol id="ols">
+
+					</ol>
+				</div>
+				<br>
 				<div class="input">
 					<div class="inp one focus">
 						<div>
-							<h5>First Name</h5>
-							<input class="uname" type="text" placeholder="First Name" name="firstname">
+							<div class="form-group">
+								    <input class="form-control uname" type="text" 
+								    placeholder="First Name" name="firstname" 
+								    style="width: 314px;"data-toggle="tooltip" data-placement="right" title="">
+							</div>
 						</div>
 					</div>
 					<div class="inp one focus">
 						<div>
-							<h5>Last Name</h5>
-							<input class="uname" type="text" placeholder="Last Name" name="lastname">
+							<div class="form-group">
+								    <input class="form-control uname" type="text" 
+								    placeholder="Last Name" name="lastname" 
+								    style="width: 314px;"data-toggle="tooltip" data-placement="right" title="">
+							</div>
 						</div>
 					</div>
 					<div class="inp one focus">
 						<div>
-							<h5>Username</h5>
-							<input class="uname" type="text" placeholder="Username" name="username">
+							<div class="form-group">
+								    <input class="form-control uname" type="text" 
+								    placeholder="UserName" name="username" 
+								    style="width: 314px;"data-toggle="tooltip" data-placement="right" title="">
+							</div>
 						</div>
 					</div>
 					<div class="inp two focus">
 						<div>
-							<h5>Password</h5>
-							<input  class="uname" type="password" placeholder="Password" name="password_1">
+							<div class="form-group">
+								    <input class="form-control uname" type="password" 
+								    placeholder="Password" name="password_1" 
+								    style="width: 314px;"data-toggle="tooltip" data-placement="right" title="">
+							</div>
 						</div>
 					</div>
 					<div class="inp three focus">
 						<div>
-							<h5>Retype-Password</h5>
-							<input class="uname" type="password" placeholder="Retype-password" name="password_2">
+							<div class="form-group">
+								    <input class="form-control uname" type="password" 
+								    placeholder="Retype-Password" name="password_2" 
+								    style="width: 314px;"data-toggle="tooltip" data-placement="right" title="">
+							</div>
 						</div>
 					</div>
 					<div class="inp four focus">
 						<div>
-							<h5>Mobile Number</h5>
-							<input  class="uname" type="number" placeholder="number" name="number">
+							<div class="form-group">
+								    <input class="form-control uname" type="number" 
+								    placeholder="Mobile Number" name="number" 
+								    style="width: 314px;"data-toggle="tooltip" data-placement="right" title="">
+							</div>
+						</div>
+					</div>
+					<div class="inp one focus">
+						<div>
+							<div class="form-group">
+								    <input class="form-control uname" type="text" 
+								    placeholder="Roll Number" name="rno" 
+								    style="width: 314px;"data-toggle="tooltip" data-placement="right" title="">
+							</div>
 						</div>
 					</div>
 					<br>
-					<input type="submit" class="btns btn btn-outline-success" value="register"  style="width: 26%;">
+					<input class="btns btn btn-outline-success regiterdata"
+					value="register" onclick="checking()" 
+					type="button" style="width: 28%;">
 					<br>
 					<h5 id="having">Don't Have An Account ?</h5>
-				<button type="button" class="btn btns btn-outline-primary">
+					<button type="button" class="btn btns btn-outline-primary">
 						<a href="login" class="signup">Sign In</a>
 					</button>
 				</div>
 			</form>
 		</div>
 	</div>
+
+<script>
+	function checking(){
+		var data=document.querySelectorAll(".uname");
+		var i=0;
+		var errors=[];
+		for(i=0;i<data.length;i++){
+			if(i==2 || i==3 || i==4){
+				if(data[i].value.length<8){
+					errors.push("Username and Passwords should not be less than 8 characters long");
+				}
+			}
+			else if(i==6){
+				if(!data[6].value.toLowerCase().includes("am.en")){
+					errors.push("You must be the student of amritapuri campus");
+				}
+			}
+			else if(data[i].value.length<=0){
+				errors.push(data[i].placeholder+" is Required");
+			}
+		}
+		if(data[3].value!=data[4].value){
+				errors.push("Passwords are not matching");
+		}
+		errors=errors.filter((item, i, ar) => ar.indexOf(item) === i)
+		console.log(errors);
+		if(errors.length == 0){
+				var regiterdata=document.querySelector(".regiterdata");
+				regiterdata.type="submit";
+				regiterdata.form.submit();
+		}
+		try{
+			var ols=document.querySelector("#ols");
+			ols.innerHTML=""
+		}
+		finally{
+			errors.forEach(function(item){
+				//var errorList=document.querySelector(".errorList");
+				var ols=document.querySelector("#ols");
+				var y = document.createElement('LI');
+				y.setAttribute('id','errornums')
+				var t = document.createTextNode(item);
+				y.appendChild(t);
+				ols.appendChild(y);
+			})
+		}
+	}
+</script>
+
+
 	<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 <script>
+	//$('#example').tooltip(options)
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDdC-Olg4DqLrAQSEyJnXhjpZb9t78pMag",
@@ -234,6 +317,8 @@
 
 <!-- Initialize Firebase -->
 <script src="/__/firebase/init.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
