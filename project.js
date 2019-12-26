@@ -11,18 +11,21 @@ app.use(express.static("templates"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
-app.post("/new-project",function(req,res)
-{
-	var arr=[];
-	for(var i=0;i<req.body.no_of_people;i++){
-		arr.push(req.body.p+)  // code to push all the prople into the array
-	}
-	var obj={
-			pname:req.body.pname,
-			no_of_people:req.body.no_of_people,
-			about_project:req.body.about_project,
-		}
-	
-	res.sendFile(__dirname+"/templates/mylab.html");
-});
-
+module.exports = function(app){
+	app.post("/new-project",function(req,res)
+	{
+		// var arr=[];
+		// var nop=req.body.no_of_people;
+		// for(var i=1;i<=nop;i++){
+		// 	arr.push(req.body.p+i.toString())  // code to push all the prople into the array
+		// }
+		var obj={
+				//pname:req.body.pname,
+				//no_of_people:nop,
+				//teammates:arr,
+				about_project:req.body.about_project
+			}
+		console.log(obj);
+		//res.sendFile(__dirname+"/templates/mylab.html");
+	});
+}
