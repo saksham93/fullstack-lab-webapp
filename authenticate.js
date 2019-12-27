@@ -70,7 +70,7 @@ passport.use(new LocalStrategy(
 	});
   }
 ));
-
+module.exports=app;
 app.get("/login",function(req,res)
 {
 	res.sendFile(__dirname+"/templates/login.html");
@@ -90,18 +90,33 @@ app.get("/admin",function(req,res)
 		res.render('admin',{data:data});
 	})
 });
-const senddata=undefined;
 app.get("/my-lab",function(req,res)
 {
 	console.log(req.user+'i am in lab');
 	console.log(req.isAuthenticated());
 	res.sendFile(__dirname+"/templates/mylab.html");
-	const senddata=req.user;
-	console.log(senddata);
-	module.exports=senddata;
 });
 
-module.exports=senddata;
+app.post("/new-project",function(req,res){
+		var arr=[];
+		var person="p";
+		var nop=parseInt(req.body.no_of_people);
+		for(var i=1;i<=nop;i++){
+			person=person+i.toString();
+			console.log(person);
+			arr.push(req.body.person)
+			person="p"
+			console.log(req.body.person)  // code to push all the prople into the array
+		}
+		var obj={
+				pname:req.body.projname,
+				no_of_people:nop,
+				teammates:arr,
+				about_project:req.body.about_project
+			}
+		console.log(obj);
+		res.sendFile(__dirname+"/templates/mylab.html");
+});
 
 // app.get("/edit-info",function(req,res)
 // {
