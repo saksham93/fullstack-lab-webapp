@@ -37,6 +37,7 @@
             height: 100%;
             top: 0;
             display: none; 
+            z-index: -5;
         }
         .rbar{
             position: fixed;
@@ -48,6 +49,23 @@
             top: 10%;
             left: 5%;
         }
+        .closeright{
+            font-size: 49px;
+            margin: 24px;
+            top: -49%;
+            left: -32%;
+            position: absolute;
+            display: none;
+        }
+        .closeleft{
+            font-size: 49px;
+            margin: 24px;
+            position: absolute;
+            left: 50%;
+            z-index: 10;
+            top: -49%;
+            display: none;
+        }
 	</style>
 </head>
 <body>
@@ -56,7 +74,9 @@
         <div class="col-md-2">
             <i class="fas fa-bars lbar" onclick="left()" style="font-size: 36px;"></i>
             <div class="navigation">
-                <div class="background left" style="left: 79%;">
+                 <i class="fas closeleft fa-times" onclick="closeleft()"></i>
+                <div class="background left" style="left: 100%;">
+                   
                 </div>
             </div>
         </div>
@@ -65,6 +85,7 @@
         </div>
         <div class="col-md-2">
             <i class="fas fa-bars rbar" onclick="right()" style="font-size: 36px;"></i>
+            <i class="fas closeright fa-times" onclick="closeright()"></i>
             <div class="navigation">
                 <div class="background right" style="right: 88%;">
                 </div>
